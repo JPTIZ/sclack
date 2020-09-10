@@ -57,4 +57,4 @@ if __name__ == '__main__':
     """
     Test your notification availability
     """
-    notify('Your notification message is here', 'Sclack notification', 'test')
+    asyncio.run(notify('Your notification message is here', 'Sclack notification', 'test'))
