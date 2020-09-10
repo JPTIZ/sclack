@@ -1,4 +1,5 @@
 import subprocess
+import os
 
 import urwid
 
@@ -60,7 +61,8 @@ def img_to_ansi(path, width, height):
     if height:
         command.extend(['-H', str(height)])
     try:
-        ansi_text = subprocess.check_output(command)
+        with open(os.devnull, 'w') as devnull:
+            ansi_text = subprocess.run(command, check=True, stdout=None, stderr=devnull).stdout
     except (FileNotFoundError, subprocess.CalledProcessError):
         ansi_text = None
     return ansi_text
